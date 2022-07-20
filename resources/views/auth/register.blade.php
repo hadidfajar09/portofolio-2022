@@ -1,65 +1,88 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth.master')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title')
+    Register
+@endsection
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+@section('content')
+<div class="wrapper-page">
+    <div class="container-fluid p-0">
+        <div class="card">
+            <div class="card-body">
+               
+                <div class="text-center mt-4">
+                    <div class="mb-1">
+                        <a href="index.html" class="auth-logo">
+                            <img src="{{ asset('backend/assets/images/glasstea.png') }}" height="70" class="logo-dark mx-auto" alt="">
+                        </a>
+                    </div>
+                </div>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+                <h4 class="text-muted text-center font-size-18"><b>Daftar</b></h4>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <div class="p-3">
+                    <x-auth-validation-errors class="mb-4 text-danger" :errors="$errors" />
+                    <form class="form-horizontal mt-3" action="{{ route('register') }}" method="post">
+                          @csrf
+
+                          <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" required="" name="name" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="email" name="email" required="" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" name="username" required="" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="password" name="password" required="" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="password" name="password_confirmation" required="" placeholder="Konfirmasi Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="form-label ms-1 fw-normal" for="customCheck1">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center row mt-3 pt-1">
+                            <div class="col-12">
+                                <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Daftar Sekarang</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-2 mb-0 row">
+                            <div class="col-12 mt-3 text-center">
+                                <a href="{{ route('login') }}" class="text-muted">Sudah Punya Akun?</a>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end form -->
+                </div>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+            <!-- end cardbody -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end container -->
+</div>
+@endsection

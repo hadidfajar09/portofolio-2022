@@ -1,36 +1,54 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth.master')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@section('title')
+    Login
+@endsection
+
+@section('content')
+<div class="wrapper-page">
+    <div class="container-fluid p-0">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-center mt-4">
+                    <div class="mb-1">
+                        <a href="index.html" class="auth-logo">
+                            <img src="{{ asset('backend/assets/images/glasstea.png') }}" height="70" class="logo-dark mx-auto" alt="">
+                        </a>
+                    </div>
+                </div>
+
+
+                <h4 class="text-muted text-center font-size-18"><b>Reset Password</b></h4>
+
+                <div class="p-3">
+                    <x-auth-session-status class="mb-4 text-danger text-size-24" :status="session('status')" />
+                    <x-auth-validation-errors class="mb-4 text-danger" :errors="$errors" />
+                    <form class="form-horizontal mt-3" action="{{ route('password.email') }}" method="post">
+                      @csrf
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Masukkan <strong>E-mail</strong> Email anda kemudian cek di inbox anda!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="email" required=""  name="email" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group pb-2 text-center row mt-3">
+                            <div class="col-12">
+                                <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Send Email</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end cardbody -->
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        <!-- end card -->
+    </div>
+    <!-- end container -->
+</div>
+@endsection

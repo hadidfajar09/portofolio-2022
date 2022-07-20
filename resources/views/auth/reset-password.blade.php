@@ -1,48 +1,66 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth.master')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title')
+    Reset Password
+@endsection
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+@section('content')
+<div class="wrapper-page">
+    <div class="container-fluid p-0">
+        <div class="card">
+            <div class="card-body">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                <div class="text-center mt-4">
+                    <div class="mb-1">
+                        <a href="index.html" class="auth-logo">
+                            <img src="{{ asset('backend/assets/images/glasstea.png') }}" height="70" class="logo-dark mx-auto" alt="">
+                        </a>
+                    </div>
+                </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+                <h4 class="text-muted text-center font-size-18"><b>Perbarui Password Anda</b></h4>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <div class="p-3">
+                    <x-auth-validation-errors class="mb-4 text-danger" :errors="$errors" />
+
+                    <form class="form-horizontal mt-3" action="{{ route('password.update') }}" method="post">
+                        @csrf
+
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" required="" name="email" value="{{ old('email', $request->email) }}" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="password" name="password" required="" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <input class="form-control" type="password" name="password_confirmation" required="" placeholder="Konfirmasi Password">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group mb-3 text-center row mt-3 pt-1">
+                            <div class="col-12">
+                                <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Reset Password Anda</button>
+                            </div>
+                        </div>
+              
+                    </form>
+                </div>
+                <!-- end -->
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+            <!-- end cardbody -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end container -->
+</div>
+@endsection
