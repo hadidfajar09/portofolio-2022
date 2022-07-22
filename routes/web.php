@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 //admin route
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+Route::get('/admin/profile/edit', [AdminController::class, 'profileEdit'])->name('admin.profile.edit');
+Route::post('/admin/profile/store', [AdminController::class, 'profileStore'])->name('admin.profile.store');
+Route::get('/admin/profile/password', [AdminController::class, 'passwordEdit'])->name('admin.password.edit');
 
 Route::get('/dashboard', function () {
     return view('backend.index');
