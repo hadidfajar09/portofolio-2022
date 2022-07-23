@@ -24,7 +24,8 @@ Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.p
 Route::get('/admin/profile/edit', [AdminController::class, 'profileEdit'])->name('admin.profile.edit');
 Route::post('/admin/profile/store', [AdminController::class, 'profileStore'])->name('admin.profile.store');
 Route::get('/admin/profile/password', [AdminController::class, 'passwordEdit'])->name('admin.password.edit');
-
+Route::post('/admin/password/update', [AdminController::class, 'passwordUpdate'])->name('admin.password.update');
+  
 Route::get('/dashboard', function () {
     return view('backend.index');
 })->middleware(['auth','verified'])->name('dashboard');

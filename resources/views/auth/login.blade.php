@@ -28,7 +28,7 @@
 
                         <div class="form-group mb-3 row">
                             <div class="col-12">
-                                <input class="form-control" type="text" required="" name="username" placeholder="Username">
+                                <input class="form-control" type="text" required="" name="username" placeholder="Username" value="{{ old('username') }}">
                             </div>
                         </div>
 

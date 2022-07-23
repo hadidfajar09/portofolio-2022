@@ -26,7 +26,7 @@ class ProfileRequest extends FormRequest
         return [
              'name' => 'string|max:255|nullable',
              'username' => 'string|nullable',
-             'foto' => 'image|mimes:jpg,jpeg,png|nullable|size:1024',
+             'foto' => 'image|mimes:jpg,jpeg,png|nullable|max:1024',
         ];
     }
 }
