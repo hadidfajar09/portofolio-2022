@@ -4,7 +4,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
            
-                <a href="index.html" class="logo logo-light">
+                <a href="{{ url('/') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('backend/assets/images/glasstea.png') }}" alt="logo-sm-light" height="20">
                     </span>
