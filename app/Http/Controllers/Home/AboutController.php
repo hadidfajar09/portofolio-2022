@@ -73,7 +73,6 @@ class AboutController extends Controller
 
         $multi = MultiImage::limit(5)->orderBy('id','desc')->get();
 
-
         return view('backend.about.multi', compact($multi));
     }
 }
