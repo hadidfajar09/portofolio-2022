@@ -34,6 +34,13 @@
         <li>
             <a href="{{ route('home.multi') }}" class=" waves-effect">
                 <i class="ri-calendar-2-line"></i>
+                <span>Add Multi Image</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('all.multi') }}" class=" waves-effect">
+                <i class="ri-calendar-2-line"></i>
                 <span>Multi Image</span>
             </a>
         </li>

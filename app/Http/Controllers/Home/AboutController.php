@@ -75,4 +75,14 @@ class AboutController extends Controller
 
         return view('backend.about.multi', compact($multi));
     }
+
+    public function MultiStore(Request $request)
+    {
+        
+    }
+
+    public function AllMultiImage(Request $request)
+    {
+        
+    }
 }
