@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\MultiImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -78,7 +79,26 @@ class AboutController extends Controller
 
     public function MultiStore(Request $request)
     {
-        
+        $image = $request->file('multi_image');
+
+        foreach ($image as $img) {
+            $name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(220,220)->save('upload/multi/'.$name);
+
+            $save_url = 'upload/multi/'.$name;
+
+            MultiImage::create([
+                'image' => $save_url,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'Berhasil Update About Setup', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     public function AllMultiImage(Request $request)
