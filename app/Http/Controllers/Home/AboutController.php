@@ -72,9 +72,7 @@ class AboutController extends Controller
     public function MultiImage()
     {
 
-        $multi = MultiImage::limit(5)->orderBy('id','desc')->get();
-
-        return view('backend.about.multi', compact($multi));
+        return view('backend.about.multi');
     }
 
     public function MultiStore(Request $request)
@@ -94,7 +92,7 @@ class AboutController extends Controller
         }
 
         $notification = array(
-            'message' => 'Berhasil Update About Setup', 
+            'message' => 'Berhasil Tambah Multi Image', 
             'alert-type' => 'success'
         );
 
@@ -103,6 +101,9 @@ class AboutController extends Controller
 
     public function AllMultiImage(Request $request)
     {
+        $multi = MultiImage::all();
+
+        return view('backend.about.allmulti', compact('multi'));
         
     }
 }
