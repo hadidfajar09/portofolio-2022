@@ -66,7 +66,9 @@ class AboutController extends Controller
     {
         $data = About::first();
 
-        return view('frontend.about',compact('data'));
+        $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+
+        return view('frontend.about',compact('data','multi'));
     }
     
     public function MultiImage()
@@ -116,8 +118,6 @@ class AboutController extends Controller
 
     public function MultiUpdate(Request $request, $id)
     {
-
-
         
         $image = $request->file('multi_image');
 

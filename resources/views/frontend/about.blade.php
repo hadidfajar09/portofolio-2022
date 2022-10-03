@@ -26,12 +26,11 @@
         </div>
         <div class="breadcrumb__wrap__icon">
             <ul>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon01.png') }}" alt=""></li>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon02.png') }}" alt=""></li>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon03.png') }}" alt=""></li>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon04.png') }}" alt=""></li>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon05.png') }}" alt=""></li>
-                <li><img src="{{ asset('frontend/assets/img/icons/breadcrumb_icon06.png') }}" alt=""></li>
+                @foreach ($multi as $row)
+                <li><img src="{{ asset($row->image) }}" alt=""></li>
+                    
+                @endforeach
+              
             </ul>
         </div>
     </section>
@@ -49,7 +48,7 @@
                 <div class="col-lg-6">
                     <div class="about__content">
                         <div class="section__title">
-                            <span class="sub-title">01 - About me</span>
+                            <span class="sub-title">01 - About meddd</span>
                             <h2 class="title">{{ $data->title }}</h2>
                         </div>
                         <div class="about__exp">
@@ -61,7 +60,7 @@
                             </div>
                         </div>
                         <p class="desc">{{ $data->short_deskripsi }}</p>
-                        <a href="about.html" class="btn">Download my resume</a>
+                        <a href="google" class="btn">Download my resume</a>
                     </div>
                 </div>
             </div>

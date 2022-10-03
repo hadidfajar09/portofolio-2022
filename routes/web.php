@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\SliderController;
 use App\Models\HomeSlide;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +50,10 @@ Route::middleware(['auth'])->group(function(){
 
 
       
-     
-    
+      //porftolio
+      Route::get('/admin/portfolio', [PortfolioController::class, 'AllPorto'])->name('all.porto');
+      Route::get('/admin/portfolio/add', [PortfolioController::class, 'AddPorto'])->name('add.porto');
+      Route::post('/admin/portofolio/store', [PortfolioController::class, 'StorePorto'])->name('admin.porto.store');
 }); 
 
 
