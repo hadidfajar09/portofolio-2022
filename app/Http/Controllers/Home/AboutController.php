@@ -106,4 +106,62 @@ class AboutController extends Controller
         return view('backend.about.allmulti', compact('multi'));
         
     }
+
+    public function EditMulti($id)
+    {
+        $multi = MultiImage::findOrFail($id);
+
+        return view('backend.about.editmulti', compact('multi'));
+    }
+
+    public function MultiUpdate(Request $request, $id)
+    {
+
+
+        
+        $image = $request->file('multi_image');
+
+        $multi = MultiImage::findOrFail($id);
+
+        $img = $multi->image;
+
+        unlink($img);
+
+            $name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(220,220)->save('upload/multi/'.$name);
+
+            $save_url = 'upload/multi/'.$name;
+
+            MultiImage::find($id)->update([
+                'image' => $save_url,
+                'updated_at' => Carbon::now()
+            ]);
+
+        $notification = array(
+            'message' => 'Berhasil Edit Multi Image', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.multi')->with($notification);
+    }
+
+    public function DeleteMulti($id)
+    {
+        $multi = MultiImage::findOrFail($id);
+
+        $img = $multi->image;
+
+        unlink($img);
+
+        MultiImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Berhasil Hapus Multi Image', 
+            'alert-type' => 'error'
+        );
+
+        return redirect()->route('all.multi')->with($notification);
+
+        
+    }
 }

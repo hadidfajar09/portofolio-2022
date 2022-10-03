@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function(){
       Route::get('/admin/about/multi-image', [AboutController::class, 'MultiImage'])->name('home.multi');
       Route::post('/admin/about/image/store', [AboutController::class, 'MultiStore'])->name('store.multi.image');
       Route::get('/admin/about/all/multi', [AboutController::class, 'AllMultiImage'])->name('all.multi');
+      Route::get('/admin/about/multi-image/edit/{id}', [AboutController::class, 'EditMulti'])->name('edit.multi.image');
+      Route::post('/admin/about/image/update/{id}', [AboutController::class, 'MultiUpdate'])->name('update.multi.image');
+      Route::get('/admin/about/multi-image/delete/{id}', [AboutController::class, 'DeleteMulti'])->name('delete.multi.image');
 
 
       
