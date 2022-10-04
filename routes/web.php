@@ -54,6 +54,9 @@ Route::middleware(['auth'])->group(function(){
       Route::get('/admin/portfolio', [PortfolioController::class, 'AllPorto'])->name('all.porto');
       Route::get('/admin/portfolio/add', [PortfolioController::class, 'AddPorto'])->name('add.porto');
       Route::post('/admin/portofolio/store', [PortfolioController::class, 'StorePorto'])->name('admin.porto.store');
+      Route::get('/admin/portofolio/edit/{id}', [PortfolioController::class, 'EditPorto'])->name('admin.porto.edit');
+      Route::post('/admin/portofolio/update/{id}', [PortfolioController::class, 'UpdatePorto'])->name('admin.porto.update');
+      Route::get('/admin/portofolio/delete/{id}', [PortfolioController::class, 'DeletePorto'])->name('delete.porto.delete');
 }); 
 
 

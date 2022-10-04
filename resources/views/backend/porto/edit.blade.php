@@ -1,7 +1,7 @@
 @extends('backend.master')
 
 @section('title')
-    Add Portofolio
+    Edit Portofolio
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">Insert Portofolio</h4> <br><br>
+                        <h4 class="card-title">Edit Portofolio</h4> <br><br>
        
                         @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show">
@@ -28,13 +28,13 @@
         
     </div>
 @endif
-                        <form action="{{ route('admin.porto.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.porto.update', $porto->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Portfolio Name</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="example-text-input">
+                                <input class="form-control" type="text" name="name" id="example-text-input" value="{{ $porto->name }}">
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -44,7 +44,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Portfolio Title</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="title" id="example-text-input">
+                                <input class="form-control" type="text" name="title" id="example-text-input" value="{{ $porto->title }}">
 
                                 @error('title')
                                     <span class="text-danger">{{ $message }}</span>
@@ -56,7 +56,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi</label>
                             <div class="col-sm-10">
-                                <textarea id="elm1" name="description"></textarea>
+                                <textarea id="elm1" name="description">{{ $porto->description }}</textarea>
                             </div>
                         </div>
 
@@ -70,12 +70,12 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <img class="rounded avatar-xl" id="showImage" alt="200x200" src="{{ asset('upload/no_image.jpg') }}" data-holder-rendered="true">
+                                <img class="rounded avatar-xl" id="showImage" alt="200x200" src="{{ asset($porto->image) }}" data-holder-rendered="true">
                             </div>
                         </div>
 
                                  <!-- end row -->
-                        <input type="submit" class="btn btn-outline-primary waves-effect waves-light" value="Add Data">
+                        <input type="submit" class="btn btn-outline-primary waves-effect waves-light" value="Update Data">
 
                         <!-- end row -->
                     </form>
