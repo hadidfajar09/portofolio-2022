@@ -22,6 +22,7 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 Route::get('/about', [AboutController::class, 'showAbout'])->name('show.about');
+Route::get('/portfolio', [PortfolioController::class, 'ShowPorto'])->name('show.porto');
 
 //admin route
 Route::middleware(['auth'])->group(function(){
@@ -57,6 +58,7 @@ Route::middleware(['auth'])->group(function(){
       Route::get('/admin/portofolio/edit/{id}', [PortfolioController::class, 'EditPorto'])->name('admin.porto.edit');
       Route::post('/admin/portofolio/update/{id}', [PortfolioController::class, 'UpdatePorto'])->name('admin.porto.update');
       Route::get('/admin/portofolio/delete/{id}', [PortfolioController::class, 'DeletePorto'])->name('delete.porto.delete');
+      
 }); 
 
 

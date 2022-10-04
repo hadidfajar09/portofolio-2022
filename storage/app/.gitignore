@@ -1,3 +1,5 @@
 *
 !public/
+!ZeroPorto/
+!backup-temp/
 !.gitignore
