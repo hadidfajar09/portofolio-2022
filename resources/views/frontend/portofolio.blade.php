@@ -40,17 +40,7 @@
     <!-- portfolio-area -->
     <section class="portfolio__inner">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="portfolio__inner__nav">
-                        <button class="active" data-filter="*">all</button>
-                        <button data-filter=".cat-one">mobile apps</button>
-                        <button data-filter=".cat-two">website Design</button>
-                        <button data-filter=".cat-three">ui/kit</button>
-                        <button data-filter=".cat-four">Landing page</button>
-                    </div>
-                </div>
-            </div>
+            
             <div class="portfolio__inner__active">
                 <div class="portfolio__inner__item grid-item cat-two cat-three">
                     <div class="row gx-0 align-items-center">
