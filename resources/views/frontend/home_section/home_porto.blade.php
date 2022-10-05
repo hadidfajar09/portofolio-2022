@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="portfolio__overlay__content">
                                     <span>{{ $row->name }}</span>
-                                    <h4 class="title"><a href="portfolio-details.html">{{ $row->title }}</a></h4>
-                                    <a href="portfolio-details.html" class="link">More Detail</a>
+                                    <h4 class="title"><a href="{{ route('show.porto.detail', $row->id) }}">{{ $row->title }}</a></h4>
+                                    <a href="{{ route('show.porto.detail', $row->id) }}" class="link">More Detail</a>
                                 </div>
                             </div>
                             @endforeach

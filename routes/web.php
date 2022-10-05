@@ -23,6 +23,8 @@ Route::get('/', function () {
 });
 Route::get('/about', [AboutController::class, 'showAbout'])->name('show.about');
 Route::get('/portfolio', [PortfolioController::class, 'ShowPorto'])->name('show.porto');
+Route::get('/portfolio/detail/{id}', [PortfolioController::class, 'ShowPortoDetail'])->name('show.porto.detail');
+
 
 //admin route
 Route::middleware(['auth'])->group(function(){

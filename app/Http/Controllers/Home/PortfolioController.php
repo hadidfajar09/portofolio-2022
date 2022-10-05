@@ -153,4 +153,11 @@ class PortfolioController extends Controller
         $porto = Portfolio::latest()->get();
         return view('frontend.portofolio', compact('porto'));
     }
+
+    public function ShowPortoDetail($id)
+    {
+        $porto = Portfolio::findOrFail($id);
+
+        return view('frontend.detail', compact('porto'));
+    }
 }
