@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\SliderController;
 use App\Models\HomeSlide;
@@ -60,6 +61,22 @@ Route::middleware(['auth'])->group(function(){
       Route::get('/admin/portofolio/edit/{id}', [PortfolioController::class, 'EditPorto'])->name('admin.porto.edit');
       Route::post('/admin/portofolio/update/{id}', [PortfolioController::class, 'UpdatePorto'])->name('admin.porto.update');
       Route::get('/admin/portofolio/delete/{id}', [PortfolioController::class, 'DeletePorto'])->name('delete.porto.delete');
+
+
+       //Blog
+       Route::get('/admin/category', [BlogController::class, 'ListCategory'])->name('all.category');
+       Route::get('/admin/category/add', [BlogController::class, 'AddCategory'])->name('add.category');
+       Route::post('/admin/category/store', [BlogController::class, 'StoreCategory'])->name('admin.category.store');
+       Route::get('/admin/category/edit/{id}', [BlogController::class, 'EditCategory'])->name('admin.category.edit');
+       Route::post('/admin/category/update/{id}', [BlogController::class, 'UpdateCategory'])->name('admin.category.update');
+       Route::get('/admin/category/delete/{id}', [BlogController::class, 'DeleteCategory'])->name('delete.category.delete');
+
+       Route::get('/admin/blog', [BlogController::class, 'ListBlog'])->name('all.blog');
+       Route::get('/admin/blog/add', [BlogController::class, 'AddBlog'])->name('add.blog');
+       Route::post('/admin/blog/store', [BlogController::class, 'StoreCategory'])->name('admin.category.store');
+       Route::get('/admin/blog/edit/{id}', [BlogController::class, 'EditCategory'])->name('admin.category.edit');
+       Route::post('/admin/blog/update/{id}', [BlogController::class, 'UpdateCategory'])->name('admin.category.update');
+       Route::get('/admin/blog/delete/{id}', [BlogController::class, 'DeleteCategory'])->name('delete.category.delete');
       
 }); 
 

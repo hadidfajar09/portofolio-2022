@@ -25,25 +25,18 @@
         </li>
 
         <li>
-            <a href="{{ route('home.about') }}" class=" waves-effect">
-                <i class="ri-calendar-2-line"></i>
-                <span>About</span>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="ri-mail-send-line"></i>
+                <span>About Setup</span>
             </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{ route('home.about') }}">About</a></li>
+                <li><a href="{{ route('all.multi') }}">Multi Image</a></li>
+                <li><a href="{{ route('home.multi') }}">Add Multi Image</a></li>
+            </ul>
         </li>
 
-        <li>
-            <a href="{{ route('home.multi') }}" class=" waves-effect">
-                <i class="ri-calendar-2-line"></i>
-                <span>Add Multi Image</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('all.multi') }}" class=" waves-effect">
-                <i class="ri-calendar-2-line"></i>
-                <span>Multi Image</span>
-            </a>
-        </li>
+       
 
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -53,6 +46,19 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{ route('all.porto') }}">All Porto</a></li>
                 <li><a href="{{ route('add.porto') }}">Add Porto</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="ri-mail-send-line"></i>
+                <span>Blog Setup</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{ route('all.category') }}">All Category</a></li>
+                <li><a href="{{ route('add.category') }}">Add Category</a></li>
+                <li><a href="{{ route('all.blog') }}">All Blog</a></li>
+                <li><a href="{{ route('add.blog') }}">Add Blog</a></li>
             </ul>
         </li>
 
