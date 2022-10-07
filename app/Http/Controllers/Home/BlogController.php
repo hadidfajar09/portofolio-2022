@@ -100,7 +100,8 @@ class BlogController extends Controller
 
     public function AddBlog()
     {
-        return view('backend.blog.add_blog');
+        $category = BlogCategory::latest()->get();
+        return view('backend.blog.add_blog', compact('category'));
     }
 
     public function StoreBlog(Request $request)

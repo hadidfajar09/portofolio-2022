@@ -12,8 +12,11 @@
 <style type="text/css">
     .bootstrap-tagsinput .tag{
         margin-right: 2px;
-        color: #b70000;
+        padding: 2px;
+        background-color: rgba(88, 202, 139, 0.637);
+        color: #ffffff;
         font-weight: 700px;
+        border-radius: 15%;
     } 
 </style>
 
@@ -40,17 +43,19 @@
         
     </div>
 @endif
-                        <form action="{{ route('admin.category.store') }}" method="post">
+                        <form action="{{ route('admin.blog.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Category</label>
                             <div class="col-sm-10">
                                 <select name="category_id" class="form-select" aria-label="Default select example">
-                                    <option selected="">Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option selected="" disabled>Open this select menu</option>
+                                    @foreach ($category as $item)
+                                        
+                                    <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    @endforeach
+                                   
                                     </select>
                                 @error('category_id')
                                 <span class="text-danger">{{ $message }}</span>
@@ -70,9 +75,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
+                            <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="description" id="example-text-input">
+                                <textarea id="elm1" name="description"></textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -82,7 +87,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Tags</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="tag" id="example-text-input">
+                                <input class="form-control" type="text" value="home,web" name="tag" data-role="tagsinput">
                                 @error('tag')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -92,7 +97,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Upload Thumbnail</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" name="image" id="image" placeholder="Artisanal kale" id="example-text-input">
+                                <input class="form-control" type="file" name="image" id="image" placeholder="Thumbnail" id="example-text-input">
                             </div>
                         </div>
 

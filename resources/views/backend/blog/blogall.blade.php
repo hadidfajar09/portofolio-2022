@@ -44,7 +44,7 @@
                             <td> {{ $i++}} </td>
                             <td>{{ $item->category_id }}</td>
                             <td>{{ $item->title }}</td>
-                            <td><img src="{{ asset($item->image) }}" alt=""></td>
+                            <td><img src="{{ asset($item->image) }}" alt="" width="150"></td>
                             <td> 
                         <a href="{{ route('admin.category.edit', $item->id) }}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
 
