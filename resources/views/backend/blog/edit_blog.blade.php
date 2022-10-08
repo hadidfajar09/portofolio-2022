@@ -1,7 +1,7 @@
 @extends('backend.master')
 
 @section('title')
-    Add Blog
+    Edit Blog
 @endsection
 
 @push('css')
@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">Insert Blog</h4> <br><br>
+                        <h4 class="card-title">Edit Blog</h4> <br><br>
        
                         @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show">
@@ -43,7 +43,7 @@
         
     </div>
 @endif
-                        <form action="{{ route('admin.blog.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -53,7 +53,7 @@
                                     <option selected="" disabled>Open this select Category</option>
                                     @foreach ($category as $item)
                                         
-                                    <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    <option value="{{ $item->id }}" {{ $item->id == $blog->category_id ? 'selected' : '' }}>{{ $item->category_name }}</option>
                                     @endforeach
                                    
                                     </select>
@@ -67,7 +67,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="title" id="example-text-input">
+                                <input class="form-control" type="text" name="title" id="example-text-input" value="{{ $blog->title }}">
                                 @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -77,7 +77,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi</label>
                             <div class="col-sm-10">
-                                <textarea id="elm1" name="description"></textarea>
+                                <textarea id="elm1" name="description">{{ $blog->description }}</textarea>
                                 @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -87,7 +87,7 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Tags</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" value="agama,web" name="tag" data-role="tagsinput">
+                                <input class="form-control" type="text" value="{{ $blog->tag }}" name="tag" data-role="tagsinput">
                                 @error('tag')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -104,12 +104,12 @@
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <img class="rounded avatar-xl" id="showImage" alt="200x200" src="{{ asset('upload/no_image.jpg') }}" data-holder-rendered="true">
+                                <img class="rounded avatar-xl" id="showImage" alt="200x200" src="{{ asset($blog->image) }}" data-holder-rendered="true">
                             </div>
                         </div>
 
                                  <!-- end row -->
-                        <input type="submit" class="btn btn-outline-primary waves-effect waves-light" value="Add Data">
+                        <input type="submit" class="btn btn-outline-primary waves-effect waves-light" value="Update Data">
 
                         <!-- end row -->
                     </form>

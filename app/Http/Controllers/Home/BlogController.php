@@ -149,4 +149,83 @@ class BlogController extends Controller
         }
     }
 
+    public function EditBlog($id)
+    {
+        $blog = Blog::with('category')->findOrFail($id);
+        $category = BlogCategory::latest()->get();
+
+        return view('backend.blog.edit_blog', compact('blog','category'));
+    }
+
+    public function UpdateBlog(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'tag' => 'required',
+            'description' => 'required',
+            'image' => 'mimes: jpg,png,jpeg'
+        ], [
+            'name.required' => 'Tolong isi ini bosku'
+        ]);
+        if($request->file('image')){
+            $image = $request->file('image');   
+            $name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+
+            Image::make($image)->resize(430,327)->save('upload/blog/'.$name);
+
+            $save_url = 'upload/blog/'.$name;
+
+            Blog::findOrFail($id)->update([
+                'title' => $request->title,
+                'category_id' => $request->category_id,
+                'tag' => $request->tag,
+                'description' => $request->description,
+                'image' => $save_url,
+                'updated_at' => Carbon::now()
+            ]);
+
+            $notification = array(
+                'message' => 'Berhasil Update Blog', 
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.blog')->with($notification);
+        }else{
+
+            Blog::findOrFail($id)->update([
+                'title' => $request->title,
+                'category_id' => $request->category_id,
+                'tag' => $request->tag,
+                'description' => $request->description,
+                'updated_at' => Carbon::now()
+            ]);
+
+            $notification = array(
+                'message' => 'Berhasil Insert Blog tanpa img', 
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.blog')->with($notification);
+        }
+    }
+
+    public function DeleteBlog($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        $img = $blog->image;
+
+        unlink($img);
+
+        Blog::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Berhasil Hapus Blog', 
+            'alert-type' => 'error'
+        );
+
+        return redirect()->route('all.blog')->with($notification);
+    }
+
 }

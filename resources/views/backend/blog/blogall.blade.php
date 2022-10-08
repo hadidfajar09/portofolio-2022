@@ -30,7 +30,9 @@
                         <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th>Blog</th>
+                            <th>Category</th>
+                            <th>Title</th>
+                            <th>Thumbnail</th>
                             <th width="5%">Action</th>
                            
                         </tr>
@@ -42,13 +44,13 @@
                         	@foreach($blog as $item)
                         <tr>
                             <td> {{ $i++}} </td>
-                            <td>{{ $item->category_id }}</td>
+                            <td>{{ $item->category->category_name }}</td>
                             <td>{{ $item->title }}</td>
                             <td><img src="{{ asset($item->image) }}" alt="" width="150"></td>
                             <td> 
-                        <a href="{{ route('admin.category.edit', $item->id) }}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
+                        <a href="{{ route('admin.blog.edit', $item->id) }}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
 
-                            <a href="{{ route('delete.category.delete', $item->id) }}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
+                            <a href="{{ route('delete.blog.delete', $item->id) }}" class="btn btn-danger sm" title="Delete Data" id="delete">  <i class="fas fa-trash-alt"></i> </a>
 
                             </td>
                         </tr>
