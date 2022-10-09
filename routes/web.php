@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\PortfolioController;
+use App\Http\Controllers\Home\SettingController;
 use App\Http\Controllers\Home\SliderController;
 use App\Models\HomeSlide;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,13 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 Route::get('/about', [AboutController::class, 'showAbout'])->name('show.about');
+Route::get('/contact', [SettingController::class, 'FormContact'])->name('contact');
+Route::post('/contact/message', [SettingController::class, 'MessageStore'])->name('contact.message');
 Route::get('/portfolio', [PortfolioController::class, 'ShowPorto'])->name('show.porto');
 Route::get('/portfolio/detail/{id}', [PortfolioController::class, 'ShowPortoDetail'])->name('show.porto.detail');
-Route::get('/blog', [PortfolioController::class, 'ShowPorto'])->name('show.porto');
+Route::get('/blog', [BlogController::class, 'ShowBlog'])->name('show.blog');
+Route::get('/blog/detail/{id}', [BlogController::class, 'BlogDetail'])->name('blog.detail');
+Route::get('/blog/category/{id}', [BlogController::class, 'ShowCategory'])->name('show.category');
 
 
 //admin route
@@ -78,7 +83,11 @@ Route::middleware(['auth'])->group(function(){
        Route::get('/admin/blog/edit/{id}', [BlogController::class, 'EditBlog'])->name('admin.blog.edit');
        Route::post('/admin/blog/update/{id}', [BlogController::class, 'UpdateBlog'])->name('admin.blog.update');
        Route::get('/admin/blog/delete/{id}', [BlogController::class, 'DeleteBlog'])->name('delete.blog.delete');
-      
+
+
+       //footer
+    Route::get('/admin/footer', [SettingController::class, 'Setting'])->name('home.setting');
+    Route::post('/admin/footer/update', [SettingController::class, 'SettingUpdate'])->name('admin.setting.update');
 }); 
 
 

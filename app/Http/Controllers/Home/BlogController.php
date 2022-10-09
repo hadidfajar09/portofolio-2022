@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogCategory;
 use Carbon\Carbon;
+use App\Models\Blog;
+use App\Models\MultiImage;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
@@ -119,7 +120,7 @@ class BlogController extends Controller
             $image = $request->file('image');   
             $name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            Image::make($image)->resize(430,327)->save('upload/blog/'.$name);
+            Image::make($image)->resize(850,430)->save('upload/blog/'.$name);
 
             $save_url = 'upload/blog/'.$name;
 
@@ -172,7 +173,7 @@ class BlogController extends Controller
             $image = $request->file('image');   
             $name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
 
-            Image::make($image)->resize(430,327)->save('upload/blog/'.$name);
+            Image::make($image)->resize(850,430)->save('upload/blog/'.$name);
 
             $save_url = 'upload/blog/'.$name;
 
@@ -226,6 +227,48 @@ class BlogController extends Controller
         );
 
         return redirect()->route('all.blog')->with($notification);
+    }
+
+    public function ShowBlog()
+    {
+        $blog = Blog::latest()->paginate(5);
+
+        $all_blog = Blog::latest()->limit(5)->get();
+
+        $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+
+        $category = BlogCategory::orderBy('id','desc')->get();
+
+        return view('frontend.blog', compact('all_blog','blog','multi','category'));
+    }
+
+    public function BlogDetail($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $all_blog = Blog::latest()->limit(5)->get();
+
+        $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+
+        $category = BlogCategory::orderBy('id','desc')->get();
+
+        $tag = $blog->tag;
+        $mytag = explode(',', $tag);
+
+        return view('frontend.blog_detail', compact('blog', 'all_blog', 'multi', 'mytag', 'category'));
+    }
+
+    public function ShowCategory($id)
+    { 
+        $blog = Blog::where('category_id', $id)->latest()->get();
+        $category = BlogCategory::where('id', $id)->first();
+
+        $all_blog = Blog::latest()->limit(5)->get();
+
+        $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+
+        $category_all = BlogCategory::orderBy('id','desc')->get();
+
+        return view('frontend.cat_detail', compact('blog', 'category', 'all_blog', 'multi', 'category_all'));
     }
 
 }
