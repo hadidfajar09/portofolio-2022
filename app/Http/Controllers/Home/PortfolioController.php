@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\MultiImage;
 use App\Models\Portfolio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -150,8 +151,10 @@ class PortfolioController extends Controller
 
     public function ShowPorto()
     {
-        $porto = Portfolio::latest()->get();
-        return view('frontend.portofolio', compact('porto'));
+        $porto = Portfolio::latest()->paginate(5);
+        $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+
+        return view('frontend.portofolio', compact('porto','multi'));
     }
 
     public function ShowPortoDetail($id)

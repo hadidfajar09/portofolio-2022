@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.index');
-});
+})->name('home');
 Route::get('/about', [AboutController::class, 'showAbout'])->name('show.about');
 Route::get('/contact', [SettingController::class, 'FormContact'])->name('contact');
 Route::post('/contact/message', [SettingController::class, 'MessageStore'])->name('contact.message');

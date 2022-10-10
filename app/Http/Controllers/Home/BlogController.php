@@ -259,7 +259,7 @@ class BlogController extends Controller
 
     public function ShowCategory($id)
     { 
-        $blog = Blog::where('category_id', $id)->latest()->get();
+        $blog = Blog::where('category_id', $id)->latest()->paginate(5);
         $category = BlogCategory::where('id', $id)->first();
 
         $all_blog = Blog::latest()->limit(5)->get();
