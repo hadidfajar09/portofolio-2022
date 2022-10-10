@@ -67,14 +67,6 @@
                             </div>
                         </div>
 
-                        
-                        <div class="row mb-3">
-                            <label for="example-text-input" class="col-sm-2 col-form-label">Country</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="text" name="country" id="example-text-input" value="{{ $data->country }}">
-                            </div>
-                        </div>
-
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Intro Sosial</label>
                             <div class="col-sm-10">

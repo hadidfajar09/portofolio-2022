@@ -88,6 +88,11 @@ Route::middleware(['auth'])->group(function(){
        //footer
     Route::get('/admin/footer', [SettingController::class, 'Setting'])->name('home.setting');
     Route::post('/admin/footer/update', [SettingController::class, 'SettingUpdate'])->name('admin.setting.update');
+
+    
+       //message
+       Route::get('/admin/message', [SettingController::class, 'ShowMessage'])->name('show.message');
+       Route::get('/admin/message/delete/{id}', [SettingController::class, 'MessageDelete'])->name('delete.message');
 }); 
 
 

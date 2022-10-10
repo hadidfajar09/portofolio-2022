@@ -36,30 +36,47 @@
 
     <!-- contact-map -->
     <div id="contact-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96811.54759587669!2d-74.01263924803828!3d40.6880494567041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25bae694479a3%3A0xb9949385da52e69e!2sBarclays%20Center!5e0!3m2!1sen!2sbd!4v1636195194646!5m2!1sen!2sbd"
+        <iframe src="https://maps.google.com/maps?q=Toko%20Fajarnet&t=k&z=17&ie=UTF8&iwloc=&output=embed"
             allowfullscreen loading="lazy"></iframe>
     </div>
     <!-- contact-map-end -->
-
+  
     <!-- contact-area -->
     <div class="contact-area">
         <div class="container">
-            <form action="#" class="contact__form">
+            <form action="{{ route('contact.message') }}" method="post" class="contact__form">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" placeholder="Enter your name*">
+                        <input type="text" name="name" placeholder="Enter your name*">
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="col-md-6">
-                        <input type="email" placeholder="Enter your mail*">
+                        <input type="email" name="email" placeholder="Enter your mail*">
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="col-md-6">
-                        <input type="text" placeholder="Enter your subject*">
+                        <input type="text" name="subject" placeholder="Enter your subject*">
+                        @error('subject')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="col-md-6">
-                        <input type="text" placeholder="Your Budget*">
+                        <input type="text" name="phone" placeholder="Phone Number">
+                        @error('phone')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                 </div>
-                <textarea name="message" id="message" placeholder="Enter your massage*"></textarea>
+                <textarea name="message" id="message" name="message" placeholder="Enter your massage*"></textarea>
+                @error('message')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+            <br><br><br>
                 <button type="submit" class="btn">send massage</button>
             </form>
         </div>
@@ -73,35 +90,33 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="contact__info">
                         <div class="contact__info__icon">
-                            <img src="assets/img/icons/contact_icon01.png" alt="">
+                            <img src="{{ asset('frontend/assets/img/icons/contact_icon01.png') }}" alt="">
                         </div>
                         <div class="contact__info__content">
                             <h4 class="title">address line</h4>
-                            <span>Bowery St, New York, <br> NY 10013,USA</span>
+                            <span>{{ $setting->address }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="contact__info">
                         <div class="contact__info__icon">
-                            <img src="assets/img/icons/contact_icon02.png" alt="">
+                            <img src="{{ asset('frontend/assets/img/icons/contact_icon02.png') }}" alt="">
                         </div>
                         <div class="contact__info__content">
                             <h4 class="title">Phone Number</h4>
-                            <span>+1255 - 568 - 6523</span>
-                            <span>+1255 - 568 - 6523</span>
+                            <span>{{ $setting->phone }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="contact__info">
                         <div class="contact__info__icon">
-                            <img src="assets/img/icons/contact_icon03.png" alt="">
+                            <img src="{{ asset('frontend/assets/img/icons/contact_icon03.png') }}" alt="">
                         </div>
                         <div class="contact__info__content">
                             <h4 class="title">Mail Address</h4>
-                            <span>email@example.com</span>
-                            <span>info@yourdomain.com</span>
+                            <span>{{ $setting->email }}</span>
                         </div>
                     </div>
                 </div>
@@ -111,35 +126,7 @@
     <!-- contact-info-area-end -->
 
     <!-- contact-area -->
-    <section class="homeContact homeContact__style__two">
-        <div class="container">
-            <div class="homeContact__wrap">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="section__title">
-                            <span class="sub-title">07 - Say hello</span>
-                            <h2 class="title">Any questions? Feel free <br> to contact</h2>
-                        </div>
-                        <div class="homeContact__content">
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                            <h2 class="mail"><a href="mailto:Info@webmail.com">Info@webmail.com</a></h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="homeContact__form">
-                            <form action="#">
-                                <input type="text" placeholder="Enter name*">
-                                <input type="email" placeholder="Enter mail*">
-                                <input type="number" placeholder="Enter number*">
-                                <textarea name="message" placeholder="Enter Massage*"></textarea>
-                                <button type="submit">Send Message</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- contact-area-end -->
 
 </main>

@@ -74,6 +74,13 @@
         </li>
 
         <li>
+            <a href="{{ route('show.message') }}" class=" waves-effect">
+                <i class="ri-calendar-2-line"></i>
+                <span>Messages</span>
+            </a>
+        </li>
+
+        <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="ri-layout-3-line"></i>
                 <span>Layouts</span>
