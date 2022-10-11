@@ -20,7 +20,7 @@
                                     <li class=""><a href="services-details.html">Services</a></li>
                                     <li class="{{ ($route == 'show.porto') ? 'active' : '' }}"><a href="{{ route('show.porto') }}">Portfolio</a></li>
                                     <li class="{{ ($route == 'show.blog') ? 'active' : '' }}"><a href="{{ route('show.blog') }}">Blog</a></li>
-                                    <li {{ ($route == 'contact') ? 'active' : '' }}><a href="{{ route('contact') }}">contact me</a></li>
+                                    <li class="{{ ($route == 'contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">contact me</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
