@@ -55,43 +55,31 @@
                 </div>
                 <div class="col-lg-4">
                     <aside class="services__sidebar">
-                        <div class="widget">
-                            <h5 class="title">Get in Touch</h5>
-                            <form action="#" class="sidebar__contact">
-                                <input type="text" placeholder="Enter name*">
-                                <input type="email" placeholder="Enter your mail*">
-                                <textarea name="message" id="message" placeholder="Massage*"></textarea>
-                                <button type="submit" class="btn">send massage</button>
-                            </form>
-                        </div>
+                      
                         <div class="widget">
                             <h5 class="title">Project Information</h5>
                             <ul class="sidebar__contact__info">
-                                <li><span>Date :</span> January, 2021</li>
-                                <li><span>Location :</span> East Meadow NY 11554</li>
-                                <li><span>Client :</span> American</li>
+                                <li><span>Date : {{ Carbon\Carbon::parse($porto->created_at)->format('d - M - Y') }}</span> </li>
+                                <li><span>Location :</span> {{ $setting->country }}</li>
                                 <li class="cagegory"><span>Category :</span>
-                                    <a href="portfolio.html">Photo,</a>
-                                    <a href="portfolio.html">UI/UX</a>
+                                    <a href="#">{{ $porto->category }}</a>
                                 </li>
-                                <li><span>Project Link :</span> <a href="portfolio-details.html">https://www.yournews.com/</a></li>
+                                <li><span>Project Link :</span> <a target="_blank" href="{{ $porto->link }}">{{ $porto->link }}</a></li>
                             </ul>
                         </div>
                         <div class="widget">
                             <h5 class="title">Contact Information</h5>
                             <ul class="sidebar__contact__info">
-                                <li><span>Address :</span> 8638 Amarica Stranfod, <br> Mailbon Star</li>
-                                <li><span>Mail :</span> yourmail@gmail.com</li>
-                                <li><span>Phone :</span> +7464 0187 3535 645</li>
-                                <li><span>Fax id :</span> +9 659459 49594</li>
+                                <li><span>Address :</span> {{ $setting->address }}</li>
+                                <li><span>Mail :</span> {{ $setting->email }}</li>
+                                <li><span>Phone :</span> {{ $setting->phone }}</li>
                             </ul>
                             <ul class="sidebar__contact__social">
-                                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="{{ $setting->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="{{ $setting->twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="{{ $setting->github }}"><i class="fab fa-github"></i></a></li>
+                                <li><a href="{{ $setting->linkedin }}"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="{{ $setting->instagram }}"><i class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </aside>

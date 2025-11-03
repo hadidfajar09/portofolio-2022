@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Footer;
 use App\Models\MultiImage;
 use App\Models\Portfolio;
 use Carbon\Carbon;
@@ -29,6 +30,8 @@ class PortfolioController extends Controller
             'name' => 'required|unique:portfolios|max:255',
             'title' => 'required',
             'description' => 'required',
+            'link' => 'required',
+            'category' => 'required',
             'image' => 'required|mimes: jpg,png,jpeg'
         ], [
             'name.required' => 'Tolong isi ini bosku'
@@ -45,6 +48,8 @@ class PortfolioController extends Controller
                 'name' => $request->name,
                 'title' => $request->title,
                 'description' => $request->description,
+                'link' => $request->link,
+                'category' => $request->category,
                 'image' => $save_url,
                 'created_at' => Carbon::now()
             ]);
@@ -101,6 +106,8 @@ class PortfolioController extends Controller
                 'name' => $request->name,
                 'title' => $request->title,
                 'description' => $request->description,
+                'link' => $request->link,
+                'category' => $request->category,
                 'image' => $save_url,
                 'updated_at' => Carbon::now()
             ]);
@@ -117,6 +124,8 @@ class PortfolioController extends Controller
                 'name' => $request->name,
                 'title' => $request->title,
                 'description' => $request->description,
+                'link' => $request->link,
+                'category' => $request->category,
                 'updated_at' => Carbon::now()
             ]);
 
@@ -153,6 +162,7 @@ class PortfolioController extends Controller
     {
         $porto = Portfolio::latest()->paginate(5);
         $multi = MultiImage::limit(7)->orderBy('id','desc')->get();
+        
 
         return view('frontend.portofolio', compact('porto','multi'));
     }
@@ -160,7 +170,8 @@ class PortfolioController extends Controller
     public function ShowPortoDetail($id)
     {
         $porto = Portfolio::findOrFail($id);
+        $setting = Footer::first();
 
-        return view('frontend.detail', compact('porto'));
+        return view('frontend.detail', compact('porto','setting'));
     }
 }

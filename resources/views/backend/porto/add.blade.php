@@ -52,6 +52,28 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="example-text-input" class="col-sm-2 col-form-label">Project Link</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" name="link" id="example-text-input">
+
+                                @error('link')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="example-text-input" class="col-sm-2 col-form-label">Category</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" name="category" id="example-text-input">
+
+                                @error('category')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label for="example-text-input" class="col-sm-2 col-form-label">Deskripsi</label>

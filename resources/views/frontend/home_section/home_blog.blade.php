@@ -14,7 +14,7 @@
                     <div class="blog__post__thumb">
                         <a href="{{ route('blog.detail',$item->id) }}"><img src="{{ asset($item->image) }}" style="width: 430px; height: 327px;" alt=""></a>
                         <div class="blog__post__tags">
-                            <a href="{{ route('show.category', Str::lower($item['category']['category_name'])  ) }}">{{ $item['category']['category_name'] }}</a>
+                            <a href="{{ route('show.category', $item->category->id  ) }}">{{ $item['category']['category_name'] }}</a>
                         </div>
                     </div>
                     <div class="blog__post__content">
